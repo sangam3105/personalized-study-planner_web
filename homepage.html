@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaceWise - Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="brand-logo">
+        <i data-lucide="book-open"></i>
+      </div>
+      <span class="brand-name">Pace<span>Wise</span></span>
+    </div>
+    <div class="nav-right">
+      <div class="user-profile">
+        <div class="avatar">SV</div>
+        <span class="user-name">Sangam Verma</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <!-- Left Sidebar / Navigation -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#tasks" class="nav-item">
+          <i data-lucide="check-square"></i>
+          <span>Tasks & Goals</span>
+        </a>
+        <a href="#timer" class="nav-item">
+          <i data-lucide="timer"></i>
+          <span>Focus Timer</span>
+        </a>
+        <a href="#schedule" class="nav-item">
+          <i data-lucide="calendar"></i>
+          <span>Schedule</span>
+        </a>
+        <a href="#notes" class="nav-item">
+          <i data-lucide="file-text"></i>
+          <span>Quick Notes</span>
+        </a>
+      </nav>
+      <div class="streak-badge">
+        <i data-lucide="flame"></i>
+        <div>
+          <strong>5 Day Streak!</strong>
+          <p>Keep up the great rhythm</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Dashboard Main Content -->
+    <div class="content-area">
+      
+      <!-- Welcome Banner -->
+      <section class="welcome-banner">
+        <h2>Welcome back, Sangam! 👋</h2>
+        <p>Master your rhythm today. You have 3 tasks scheduled for this session.</p>
+      </section>
+
+      <!-- Analytics Stats Grid -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i data-lucide="clock"></i></div>
+          <div>
+            <h3>14.5 hrs</h3>
+            <p>Focus Time (This Week)</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon sky"><i data-lucide="check-circle-2"></i></div>
+          <div>
+            <h3>12 / 15</h3>
+            <p>Tasks Completed</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon indigo"><i data-lucide="target"></i></div>
+          <div>
+            <h3>80%</h3>
+            <p>Weekly Goal Rate</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Two Column Grid for Tools -->
+      <div class="dashboard-grid">
+        
+        <!-- Left Column: Tasks & Timetable -->
+        <div class="grid-column">
+          
+          <!-- Task Manager Card -->
+          <div class="card" id="tasks">
+            <div class="card-header">
+              <h3><i data-lucide="list-todo"></i> Study Tasks</h3>
+              <span class="badge">3 Remaining</span>
+            </div>
+            
+            <div class="task-input-group">
+              <input type="text" id="taskInput" placeholder="Add a new study task..." class="input-field">
+              <select id="prioritySelect" class="select-field">
+                <option value="High">High</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="Low">Low</option>
+              </select>
+              <button class="btn btn-primary" onclick="addTask()">Add</button>
+            </div>
+
+            <ul class="task-list" id="taskList">
+              <li class="task-item">
+                <label class="task-label">
+                  <input type="checkbox" class="task-checkbox">
+                  <span class="task-text">Complete Data Structures Assignment</span>
+                </label>
+                <span class="tag tag-high">High</span>
+              </li>
+              <li class="task-item">
+                <label class="task-label">
+                  <input type="checkbox" class="task-checkbox">
+                  <span class="task-text">Revise Computer Organization Notes</span>
+                </label>
+                <span class="tag tag-med">Medium</span>
+              </li>
+              <li class="task-item">
+                <label class="task-label">
+                  <input type="checkbox" class="task-checkbox" checked>
+                  <span class="task-text completed">Solve 2 LeetCode Problems</span>
+                </label>
+                <span class="tag tag-low">Low</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Weekly Schedule Card -->
+          <div class="card" id="schedule">
+            <div class="card-header">
+              <h3><i data-lucide="calendar"></i> Today's Schedule</h3>
+            </div>
+            <div class="timetable">
+              <div class="time-slot">
+                <span class="time">09:00 AM</span>
+                <div class="slot-content">
+                  <strong>Electronics Engineering</strong>
+                  <p>Lecture Notes Review</p>
+                </div>
+              </div>
+              <div class="time-slot active-slot">
+                <span class="time">02:00 PM</span>
+                <div class="slot-content">
+                  <strong>Algorithm Practice</strong>
+                  <p>C++ Hash Maps & Arrays</p>
+                </div>
+              </div>
+              <div class="time-slot">
+                <span class="time">06:00 PM</span>
+                <div class="slot-content">
+                  <strong>Frontend Development</strong>
+                  <p>PaceWise Dashboard Styling</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Focus Timer & Scratchpad -->
+        <div class="grid-column">
+          
+          <!-- Pomodoro Timer Card -->
+          <div class="card timer-card" id="timer">
+            <div class="card-header center">
+              <h3><i data-lucide="timer"></i> Focus Pomodoro</h3>
+            </div>
+            
+            <div class="timer-display">
+              <span id="timerText">25:00</span>
+              <p>Stay focused and avoid distractions</p>
+            </div>
+
+            <div class="timer-controls">
+              <button class="btn btn-primary" id="startBtn">Start Session</button>
+              <button class="btn btn-secondary" id="resetBtn">Reset</button>
+            </div>
+          </div>
+
+          <!-- Quick Notes Scratchpad -->
+          <div class="card" id="notes">
+            <div class="card-header">
+              <h3><i data-lucide="edit-3"></i> Quick Notes Scratchpad</h3>
+            </div>
+            <textarea class="notes-area" placeholder="Jot down quick thoughts, formulas, or reminders..."></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Lucide Icon Initialization -->
+  <script>
+    lucide.createIcons();
+
+    // Basic Task Toggle Logic
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const priority = document.getElementById('prioritySelect').value;
+      const list = document.getElementById('taskList');
+      
+      if (!input.value.trim()) return;
+
+      const tagClass = priority === 'High' ? 'tag-high' : (priority === 'Medium' ? 'tag-med' : 'tag-low');
+      
+      const li = document.createElement('li');
+      li.className = 'task-item';
+      li.innerHTML = `
+        <label class="task-label">
+          <input type="checkbox" class="task-checkbox">
+          <span class="task-text">${input.value}</span>
+        </label>
+        <span class="tag ${tagClass}">${priority}</span>
+      `;
+      
+      list.prepend(li);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
